@@ -63,3 +63,16 @@ logo.png – Extrait du papier en-tête SOPROCACAM COOP-CA
 
 NOTE: Remplacer toutes les images par les photos officielles de l'entreprise
       dès qu'elles sont disponibles pour un rendu optimal.
+
+MISE A JOUR IMAGES (v2)
+-----------------------
+plantation.jpg – Producteur ouvrant des cabosses de cacao, Cote d'Ivoire
+                  Source: Wikimedia Commons (CC BY 3.0)
+hero1.jpg      – Tas de gousses de cacao recoltees
+                  Source: Wikimedia Commons (CC BY-SA 4.0)
+hero2.jpg      – Recolte de cabosses de cacao en plantation
+                  Source: Pexels.com – Libre d'utilisation
+beans.jpg      – Cerises de cafe sur la branche, Burundi
+                  Source: Pexels.com (Edouard MIHIGO) – Libre d'utilisation
+exchange.jpg   – Mains tenant des gousses de cacao mures (echange)
+                  Source: Pexels.com (MELQUIZEDEQUE ALMEIDA) – Libre d'utilisation
