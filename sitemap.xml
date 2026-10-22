@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>http://www.soprocacam.com/</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
-  <url><loc>http://www.soprocacam.com/qui-sommes-nous.html</loc><priority>0.8</priority></url>
-  <url><loc>http://www.soprocacam.com/cooperative.html</loc><priority>0.8</priority></url>
-  <url><loc>http://www.soprocacam.com/plantations.html</loc><priority>0.8</priority></url>
-  <url><loc>http://www.soprocacam.com/cacao.html</loc><priority>0.9</priority></url>
-  <url><loc>http://www.soprocacam.com/cafe.html</loc><priority>0.9</priority></url>
-  <url><loc>http://www.soprocacam.com/approvisionnement-afrique.html</loc><priority>0.7</priority></url>
-  <url><loc>http://www.soprocacam.com/qualite.html</loc><priority>0.7</priority></url>
-  <url><loc>http://www.soprocacam.com/export.html</loc><priority>0.8</priority></url>
-  <url><loc>http://www.soprocacam.com/partenaire.html</loc><priority>0.7</priority></url>
-  <url><loc>http://www.soprocacam.com/engagement.html</loc><priority>0.6</priority></url>
-  <url><loc>http://www.soprocacam.com/actualites.html</loc><priority>0.6</priority></url>
-  <url><loc>http://www.soprocacam.com/faq.html</loc><priority>0.6</priority></url>
-  <url><loc>http://www.soprocacam.com/contact.html</loc><priority>0.9</priority></url>
-  <url><loc>http://www.soprocacam.com/mentions-legales.html</loc><priority>0.3</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/qui-sommes-nous.html</loc><priority>0.8</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/cooperative.html</loc><priority>0.8</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/plantations.html</loc><priority>0.8</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/cacao.html</loc><priority>0.9</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/cafe.html</loc><priority>0.9</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/approvisionnement-afrique.html</loc><priority>0.7</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/qualite.html</loc><priority>0.7</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/export.html</loc><priority>0.8</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/partenaire.html</loc><priority>0.7</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/engagement.html</loc><priority>0.6</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/actualites.html</loc><priority>0.6</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/faq.html</loc><priority>0.6</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/contact.html</loc><priority>0.9</priority></url>
+  <url><loc>https://soprocacam-coop-ca.vercel.app/mentions-legales.html</loc><priority>0.3</priority></url>
 </urlset>
