@@ -384,7 +384,8 @@ h1, h2, h3, h4 { line-height: 1.2; }
    ========================================================================== */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100vh;          /* fallback */
+  height: 100svh;         /* dynamic viewport height (mobile address bar aware) */
   min-height: 600px;
   overflow: hidden;
 }
@@ -530,8 +531,8 @@ h1, h2, h3, h4 { line-height: 1.2; }
   cursor: pointer;
 }
 .carousel-chevron:hover { background: rgba(45,22,12,.7); border-color: var(--white); }
-.carousel-chevron.prev { left: 24px; }
-.carousel-chevron.next { right: 24px; }
+.carousel-chevron.prev { left: clamp(12px, 2vw, 24px); }
+.carousel-chevron.next { right: clamp(12px, 2vw, 24px); }
 .carousel-chevron svg { width: 20px; height: 20px; }
 
 /* Scroll indicator */
@@ -1949,7 +1950,13 @@ textarea { resize: vertical; min-height: 100px; }
   .step-h-arrow { display: none; }
   .form-row { grid-template-columns: 1fr; }
   .social-bar { display: none; }
-  .hero-content { padding: 60px 24px 100px; }
+  /* Hero: reduce chevrons, add padding so text clears the arrows */
+  .carousel-chevron { width: 40px; height: 40px; border-radius: 50%; opacity: 0.9; }
+  .carousel-chevron.prev { left: clamp(8px, 2vw, 12px); }
+  .carousel-chevron.next { right: clamp(8px, 2vw, 12px); }
+  /* 8px margin + 40px arrow = 48px; add 8px gap → 56px minimum */
+  .hero-content { padding: 60px clamp(56px, 12vw, 80px) 100px; }
+  .hero .hero-content { padding: 60px clamp(56px, 12vw, 80px) 100px; }
 }
 
 /* 480px */
@@ -1959,6 +1966,7 @@ textarea { resize: vertical; min-height: 100px; }
   .poles-grid { grid-template-columns: 1fr; }
   .steps-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
+  .carousel-chevron { width: 36px; height: 36px; }
   .slide-btns { flex-direction: column; }
   .cta-btns { flex-direction: column; align-items: center; }
   .newsletter-form { flex-direction: column; }
@@ -2122,7 +2130,8 @@ textarea { resize: vertical; min-height: 100px; }
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 60px 24px 120px;
+  /* Horizontal padding clears the carousel chevrons (48 px wide + 12–24 px from edge) */
+  padding: 60px clamp(80px, 8vw, 120px) 120px;
   max-width: var(--container-lg);
   margin: 0 auto;
 }
@@ -2149,6 +2158,70 @@ textarea { resize: vertical; min-height: 100px; }
   color: var(--chocolate);
   line-height: 1;
   margin-bottom: 16px;
+}
+
+/* Landscape phone: shorten hero, shrink title */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: 300px; }
+  .slide-title { font-size: clamp(22px, 4vh, 30px); }
+  .hero .hero-content { padding: 12px clamp(56px, 12vw, 80px) 48px; }
+  .carousel-controls { bottom: 12px; }
+}
+
+/* Notched phones – honour safe area insets */
+@supports (padding: env(safe-area-inset-left)) {
+  .hero .hero-content {
+    padding-left: max(clamp(80px, 8vw, 120px), env(safe-area-inset-left));
+    padding-right: max(clamp(80px, 8vw, 120px), env(safe-area-inset-right));
+  }
+  @media (max-width: 768px) {
+    .hero .hero-content {
+      padding-left: max(clamp(56px, 12vw, 80px), env(safe-area-inset-left));
+      padding-right: max(clamp(56px, 12vw, 80px), env(safe-area-inset-right));
+    }
+  }
+}
+
+/* Operators economic message block */
+.operators-block {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--cream);
+  border-left: 4px solid var(--caramel);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.operators-block-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--caramel);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.operators-block-title {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--caramel-dark);
+  margin-bottom: 8px;
+}
+.operators-block-text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .operators-block { flex-direction: column; gap: 12px; }
 }
 
 /* Reduced motion */

@@ -49,7 +49,7 @@ window.SOPRO.translations = {
     'hero2.btn1':  'Nos plantations',
     'hero2.btn2':  'Demander une visite',
     'hero3.label': 'La coopérative',
-    'hero3.title': 'Une coopérative de plus de 13 producteurs.',
+    'hero3.title': 'Une coopérative de plus de 130 producteurs.',
     'hero3.sub':   'SOPROCACAM COOP-CA réunit des producteurs industriels présents dans toutes les régions de culture du Cameroun.',
     'hero3.btn1':  'La coopérative',
     'hero3.btn2':  'Devenir partenaire',
@@ -115,6 +115,11 @@ window.SOPRO.translations = {
     'footer.cacao_link': 'Le cacao',
     'footer.cafe_link':  'Le café',
     'footer.about_link': 'À propos de SOPROCACAM',
+    /* --- Page contact --- */
+    'contact.itinerary': "Obtenir l'itinéraire",
+    /* --- Message opérateurs économiques --- */
+    'operators.title': 'Opérateurs économiques',
+    'operators.msg':   'Importateur, chocolatier, torréfacteur ou négociant en matières premières agricoles ? SOPROCACAM COOP-CA est votre fournisseur direct depuis le Cameroun. Nous proposons du cacao fermenté et séché de qualité export (Grade 1 & 2), du café Robusta et Arabica, livrés FOB depuis le port de Douala avec l\'ensemble des documents réglementaires (certificat d\'origine, certificat phytosanitaire, facture commerciale). Remplissez le formulaire ci-dessous ou contactez-nous directement par téléphone ou WhatsApp pour toute demande de cotation, d\'échantillon ou de partenariat commercial. Notre équipe commerciale vous répond sous 48 heures ouvrées.',
   },
 
   en: {
@@ -162,7 +167,7 @@ window.SOPRO.translations = {
     'hero2.btn1':  'Our plantations',
     'hero2.btn2':  'Request a visit',
     'hero3.label': 'The cooperative',
-    'hero3.title': 'A cooperative of more than 13 producers.',
+    'hero3.title': 'A cooperative of more than 130 producers.',
     'hero3.sub':   'SOPROCACAM COOP-CA brings together industrial producers present in all cocoa-growing regions of Cameroon.',
     'hero3.btn1':  'The cooperative',
     'hero3.btn2':  'Become a partner',
@@ -228,6 +233,11 @@ window.SOPRO.translations = {
     'footer.cacao_link': 'Cocoa',
     'footer.cafe_link':  'Coffee',
     'footer.about_link': 'About SOPROCACAM',
+    /* --- Contact page --- */
+    'contact.itinerary': 'Get directions',
+    /* --- Economic operators message --- */
+    'operators.title': 'Economic operators',
+    'operators.msg':   'Importer, chocolate maker, roaster or agricultural commodity trader? SOPROCACAM COOP-CA is your direct supplier from Cameroon. We offer fermented and dried export-grade cocoa (Grade 1 & 2) and Robusta and Arabica coffee, delivered FOB from the port of Douala with all regulatory documents (certificate of origin, phytosanitary certificate, commercial invoice). Fill in the form below or contact us directly by phone or WhatsApp for any quotation, sample or commercial partnership request. Our commercial team replies within 48 business hours.',
   }
 };
 
@@ -237,8 +247,8 @@ window.SOPRO.translations = {
    Keys must match the exact visible French text (normalised whitespace).
    ========================================================================== */
 window.SOPRO.dict = {
-  "+13 partenaires": "+13 partners",
-  "+13 producteurs industriels": "+13 industrial producers",
+  "+130 partenaires": "+130 partners",
+  "+130 producteurs industriels": "+130 industrial producers",
   ", société coopérative avec conseil d'administration.": ", a cooperative company with a board of directors.",
   "1 conteneur de 20 pieds": "One 20-foot container",
   "4 raisons de choisir notre cacao": "4 reasons to choose our cocoa",
@@ -256,7 +266,7 @@ window.SOPRO.dict = {
   "Actualités – SOPROCACAM COOP-CA": "News – SOPROCACAM COOP-CA",
   "Agriculture durable": "Sustainable farming",
   "Akwa, Douala, Cameroun": "Akwa, Douala, Cameroon",
-  "Akwa, rue Franceville, BP 6469, Douala, Cameroun": "Akwa, rue Franceville, BP 6469, Douala, Cameroon",
+  "Immeuble AXA, rue 309 (rue Franqueville), Akwa, BP 6469, Douala, Cameroun": "Immeuble AXA, rue 309 (rue Franqueville), Akwa, BP 6469, Douala, Cameroon",
   "Alors n'hésitez plus. Rejoignez SOPROCACAM COOP-CA et accédez à un débouché fiable et aux marchés internationaux.": "So don't wait any longer. Join SOPROCACAM COOP-CA and gain access to a reliable outlet and international markets.",
   "Ancrage local": "Local roots",
   "Août 2026": "August 2026",
@@ -399,7 +409,7 @@ window.SOPRO.dict = {
   "Documents, conditionnement et expédition vers votre destination.": "Documents, packaging and shipment to your destination.",
   "Documents, transport, chargement à Douala": "Documents, transport, loading in Douala",
   "Données personnelles": "Personal data",
-  "Dont le siège est à Douala, SOPROCACAM COOP-CA est une société coopérative spécialisée dans le cacao et le café. Nous cultivons nos propres plantations, nous rassemblons plus de 13 producteurs industriels présents dans toutes les régions du Cameroun où ces cultures sont pratiquées.": "Headquartered in Douala, SOPROCACAM COOP-CA is a cooperative company specialised in cocoa and coffee. We cultivate our own plantations and bring together more than 13 industrial producers present in all regions of Cameroon where these crops are grown.",
+  "Dont le siège est à Douala, SOPROCACAM COOP-CA est une société coopérative spécialisée dans le cacao et le café. Nous cultivons nos propres plantations, nous rassemblons plus de 130 producteurs industriels présents dans toutes les régions du Cameroun où ces cultures sont pratiquées.": "Headquartered in Douala, SOPROCACAM COOP-CA is a cooperative company specialised in cocoa and coffee. We cultivate our own plantations and bring together more than 130 industrial producers present in all regions of Cameroon where these crops are grown.",
   "Douala, Cameroun": "Douala, Cameroon",
   "Du cacao de toute l'Afrique": "Cocoa from all over Africa",
   "Du cacao et du café cultivés, collectés et exportés par une coopérative engagée au cœur de l'Afrique.": "Cocoa and coffee grown, collected and exported by a committed cooperative at the heart of Africa.",
@@ -488,7 +498,7 @@ window.SOPRO.dict = {
   "L'accès aux marchés internationaux via notre activité d'exportation.": "Access to international markets through our export activity.",
   "L'ensemble des contenus du site (textes, images, logo) est la propriété de SOPROCACAM COOP-CA ou utilisé avec autorisation. Les images libres de droits proviennent de Unsplash (voir fichier credits.txt). Toute reproduction sans accord écrit est interdite.": "All site content (texts, images, logo) is the property of SOPROCACAM COOP-CA or used with permission. Royalty-free images come from Unsplash (see credits.txt file). Any reproduction without written agreement is prohibited.",
   "La coopérative": "The cooperative",
-  "La coopérative SOPROCACAM COOP-CA – +13 producteurs camerounais": "The SOPROCACAM COOP-CA cooperative – +13 Cameroonian producers",
+  "La coopérative SOPROCACAM COOP-CA – +130 producteurs camerounais": "The SOPROCACAM COOP-CA cooperative – +130 Cameroonian producers",
   "La coopérative en bref": "The cooperative in brief",
   "La fermentation est l'étape clé qui développe les arômes du cacao. Découvrez comment nous maîtrisons ce processus.": "Fermentation is the key step that develops cocoa aromas. Discover how we master this process.",
   "La force du groupe au service de chaque producteur membre.": "The strength of the group at the service of each member producer.",
@@ -555,7 +565,7 @@ window.SOPRO.dict = {
   "Nos valeurs": "Our values",
   "Notre engagement": "Our commitment",
   "Notre expertise": "Our expertise",
-  "Notre force vient de notre organisation. Nous sommes planteurs, car nous exploitons nos propres plantations. Nous sommes coopérative, car nous réunissons plus de 13 producteurs industriels de cacao présents dans toutes les régions du Cameroun où l'on cultive le cacao et le café. Nous sommes enfin exportateurs et acheteurs, car nous achetons également du cacao dans d'autres pays africains producteurs avant de l'expédier vers les marchés internationaux.": "Our strength comes from our organisation. We are growers, because we operate our own plantations. We are a cooperative, because we bring together more than 13 industrial cocoa producers present in all regions of Cameroon where cocoa and coffee are grown. We are also exporters and buyers, because we also buy cocoa in other producing African countries before shipping it to international markets.",
+  "Notre force vient de notre organisation. Nous sommes planteurs, car nous exploitons nos propres plantations. Nous sommes coopérative, car nous réunissons plus de 130 producteurs industriels de cacao présents dans toutes les régions du Cameroun où l'on cultive le cacao et le café. Nous sommes enfin exportateurs et acheteurs, car nous achetons également du cacao dans d'autres pays africains producteurs avant de l'expédier vers les marchés internationaux.": "Our strength comes from our organisation. We are growers, because we operate our own plantations. We are a cooperative, because we bring together more than 130 industrial cocoa producers present in all regions of Cameroon where cocoa and coffee are grown. We are also exporters and buyers, because we also buy cocoa in other producing African countries before shipping it to international markets.",
   "Notre histoire": "Our story",
   "Notre mission": "Our mission",
   "Notre organisation": "Our organisation",
@@ -689,7 +699,7 @@ window.SOPRO.dict = {
   "Signature et modalités de paiement convenus entre les parties.": "Signature and payment terms agreed between the parties.",
   "Siège": "Head office",
   "Siège social": "Head office",
-  "Siège social : Akwa, rue Franceville, BP 6469, Douala, Cameroun.": "Head office: Akwa, rue Franceville, BP 6469, Douala, Cameroon.",
+  "Siège social : Immeuble AXA, rue 309 (rue Franqueville), Akwa, BP 6469, Douala, Cameroun.": "Head office: Immeuble AXA, rue 309 (rue Franqueville), Akwa, BP 6469, Douala, Cameroon.",
   "Société coopérative avec conseil d'administration": "Cooperative company with a board of directors",
   "Société coopérative avec conseil d'administration : une organisation de producteurs dirigée par un conseil élu par ses membres.": "Cooperative company with a board of directors: an organisation of producers run by a council elected by its members.",
   "Solidarité": "Solidarity",
@@ -752,14 +762,14 @@ window.SOPRO.dict = {
   "Une COOP-CA est une société coopérative dotée d'un conseil d'administration. Ses membres s'unissent pour partager leurs moyens, leurs connaissances et leurs marchés. Chaque producteur garde son exploitation, mais profite de la force du groupe : meilleure organisation, meilleur accès aux débouchés et meilleur prix.": "A COOP-CA is a cooperative company with a board of directors. Its members unite to share their means, their knowledge and their markets. Each producer keeps their own farm, but benefits from the strength of the group: better organisation, better access to markets and better prices.",
   "Une autre question ?": "Another question?",
   "Une coopérative ancrée dans la terre, tournée vers le monde.": "A cooperative rooted in the land, facing the world.",
-  "Une coopérative de plus de 13 producteurs.": "A cooperative of more than 13 producers.",
+  "Une coopérative de plus de 130 producteurs.": "A cooperative of more than 130 producers.",
   "Une coopérative engagée": "A committed cooperative",
   "Une origine toujours indiquée": "An origin always indicated",
   "Une partie de ce que nous exportons pousse sur nos propres terres.": "Part of what we export grows on our own land.",
   "Une présence dans toutes les régions de culture": "A presence in all growing regions",
   "Une qualité homogène grâce à des pratiques et des contrôles communs.": "Homogeneous quality thanks to common practices and controls.",
   "Une question, un besoin, une demande de prix ? Nous vous répondons rapidement.": "A question, a need, a price request? We respond quickly.",
-  "Une société coopérative basée à Douala qui réunit plus de 13 producteurs industriels de cacao, exploite ses propres plantations de cacao et de café et achète aussi du cacao dans d'autres pays africains producteurs avant de l'exporter.": "A cooperative company based in Douala that brings together more than 13 industrial cocoa producers, operates its own cocoa and coffee plantations and also buys cocoa in other producing African countries before exporting it.",
+  "Une société coopérative basée à Douala qui réunit plus de 130 producteurs industriels de cacao, exploite ses propres plantations de cacao et de café et achète aussi du cacao dans d'autres pays africains producteurs avant de l'exporter.": "A cooperative company based in Douala that brings together more than 130 industrial cocoa producers, operates its own cocoa and coffee plantations and also buys cocoa in other producing African countries before exporting it.",
   "Une traçabilité claire : on sait de quelle zone et de quel producteur vient le lot.": "Clear traceability: we know which area and which producer the lot comes from.",
   "Validation de la qualité avant toute commande ferme.": "Quality validation before any firm order.",
   "Valoriser le cacao et le café d'Afrique": "Promoting African cocoa and coffee",
@@ -784,7 +794,7 @@ window.SOPRO.dict = {
   "pour l'Arabica": "for Arabica",
   "pour le cacao et le café Robusta": "for cocoa and Robusta coffee",
   "© 2026 SOPROCACAM COOP-CA. Tous droits réservés.": "© 2026 SOPROCACAM COOP-CA. All rights reserved.",
-  "« De la parcelle au conteneur : nous maîtrisons chaque étape, de nos plantations et de celles de nos 13 producteurs jusqu'au port de Douala. »": "\u201CFrom the plot to the container: we control every step, from our plantations and those of our 13 producers to the port of Douala.\u201D",
+  "« De la parcelle au conteneur : nous maîtrisons chaque étape, de nos plantations et de celles de nos 130 producteurs jusqu'au port de Douala. »": "\u201CFrom the plot to the container: we control every step, from our plantations and those of our 130 producers to the port of Douala.\u201D",
   "À maturité.": "At maturity.",
   "À pleine maturité.": "At full maturity.",
   "À propos de SOPROCACAM": "About SOPROCACAM",
