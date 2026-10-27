@@ -438,7 +438,7 @@ function initForms() {
       const body = rows.map(([l, v]) => `${l.padEnd(20)}: ${v.replace(/<br>/g,'\n')}`).join('\n')
         + `\n\nReçu depuis : www.soprocacam.com\nDate : ${dateFr}`;
 
-      const payload = JSON.stringify({ to: 'info@soprocacam.com', subject, message: body, html });
+      const payload = JSON.stringify({ to: 'info@soprocacam.com', subject, message: body });
       const sendMail = () => fetch('https://codingmailer.onrender.com/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
