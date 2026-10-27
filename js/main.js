@@ -272,15 +272,18 @@ function initFAQ() {
 }
 
 /* ==========================================================================
-   FORM HANDLING
+   FORM HANDLING — envoi vers mail-handler.php
    ========================================================================== */
 function initForms() {
   document.querySelectorAll('form[data-sopro]').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const success = form.querySelector('.form-success');
 
-      // Simple validation
+      const success  = form.querySelector('.form-success');
+      const errorDiv = form.querySelector('.form-error');
+      const btn      = form.querySelector('[type="submit"]');
+
+      // Validation des champs requis
       let valid = true;
       form.querySelectorAll('[required]').forEach(field => {
         if (!field.value.trim()) {
@@ -290,13 +293,30 @@ function initForms() {
           field.style.borderColor = '';
         }
       });
-
       if (!valid) return;
 
-      if (success) {
-        success.style.display = 'block';
-        form.reset();
-        setTimeout(() => { success.style.display = 'none'; }, 6000);
+      // État chargement
+      const btnText = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+      if (success)  success.style.display  = 'none';
+      if (errorDiv) errorDiv.style.display = 'none';
+
+      try {
+        const data = new FormData(form);
+        const res  = await fetch('mail-handler.php', { method: 'POST', body: data });
+        const json = await res.json();
+
+        if (json.success) {
+          if (success) success.style.display = 'block';
+          form.reset();
+          setTimeout(() => { if (success) success.style.display = 'none'; }, 7000);
+        } else {
+          if (errorDiv) errorDiv.style.display = 'block';
+        }
+      } catch (_) {
+        if (errorDiv) errorDiv.style.display = 'block';
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = btnText; }
       }
     });
   });

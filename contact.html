@@ -117,28 +117,30 @@
           </div>
           <div class="form-title">Demande de devis / Contact</div>
           <form data-sopro>
+            <input type="hidden" name="_form_type" value="contact" />
             <div class="form-row">
-              <div class="form-group"><label>Prénom <span class="required">*</span></label><input type="text" required placeholder="Jean" /></div>
-              <div class="form-group"><label>Nom <span class="required">*</span></label><input type="text" required placeholder="Dupont" /></div>
+              <div class="form-group"><label>Prénom <span class="required">*</span></label><input type="text" name="prenom" required placeholder="Jean" /></div>
+              <div class="form-group"><label>Nom <span class="required">*</span></label><input type="text" name="nom" required placeholder="Dupont" /></div>
             </div>
-            <div class="form-group"><label>Entreprise <span class="required">*</span></label><input type="text" required placeholder="Votre entreprise" /></div>
+            <div class="form-group"><label>Entreprise <span class="required">*</span></label><input type="text" name="entreprise" required placeholder="Votre entreprise" /></div>
             <div class="form-row">
-              <div class="form-group"><label>Pays <span class="required">*</span></label><input type="text" required placeholder="France" /></div>
-              <div class="form-group"><label>E-mail <span class="required">*</span></label><input type="email" required placeholder="jean@exemple.com" /></div>
-            </div>
-            <div class="form-row">
-              <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="+33 1 23 45 67 89" /></div>
-              <div class="form-group"><label>Produit souhaité</label><select><option value="">Sélectionner...</option><option>Cacao du Cameroun</option><option>Cacao d'autres origines africaines</option><option>Café</option></select></div>
+              <div class="form-group"><label>Pays <span class="required">*</span></label><input type="text" name="pays" required placeholder="France" /></div>
+              <div class="form-group"><label>E-mail <span class="required">*</span></label><input type="email" name="email" required placeholder="jean@exemple.com" /></div>
             </div>
             <div class="form-row">
-              <div class="form-group"><label>Quantité souhaitée</label><input type="text" placeholder="Ex: 1 conteneur 20 pieds" /></div>
-              <div class="form-group"><label>Destination</label><input type="text" placeholder="Ex: Rotterdam, Anvers..." /></div>
+              <div class="form-group"><label>Téléphone</label><input type="tel" name="telephone" placeholder="+33 1 23 45 67 89" /></div>
+              <div class="form-group"><label>Produit souhaité</label><select name="produit"><option value="">Sélectionner...</option><option>Cacao du Cameroun</option><option>Cacao d'autres origines africaines</option><option>Café</option></select></div>
             </div>
-            <div class="form-group"><label>Message</label><textarea placeholder="Précisez votre besoin : volumes, qualité, calendrier, questions..."></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label>Quantité souhaitée</label><input type="text" name="quantite" placeholder="Ex: 1 conteneur 20 pieds" /></div>
+              <div class="form-group"><label>Destination</label><input type="text" name="destination" placeholder="Ex: Rotterdam, Anvers..." /></div>
+            </div>
+            <div class="form-group"><label>Message</label><textarea name="message" placeholder="Précisez votre besoin : volumes, qualité, calendrier, questions..."></textarea></div>
             <div class="form-consent"><input type="checkbox" required /><label style="text-transform:none;font-size:13px;letter-spacing:0;">J'accepte que mes informations soient utilisées pour répondre à ma demande.</label></div>
-            <input type="text" style="display:none;" name="_trap" tabindex="-1" />
+            <input type="text" style="display:none;" name="_trap" tabindex="-1" autocomplete="off" />
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
             <div class="form-success">Merci ! Votre demande a bien été envoyée. Notre équipe vous répond sous 48 heures.</div>
+            <div class="form-error" style="display:none;color:#cc0000;background:#fff0f0;border:1px solid #ffcccc;border-radius:6px;padding:12px 16px;margin-top:12px;font-size:14px;">Une erreur est survenue. Veuillez nous contacter directement à <a href="mailto:info@soprocacam.com">info@soprocacam.com</a>.</div>
           </form>
         </div>
         <div>
