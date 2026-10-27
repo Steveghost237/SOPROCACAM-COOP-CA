@@ -356,12 +356,22 @@ function initForms() {
         ].join('\n');
       }
 
+      const payload = JSON.stringify({ to: 'info@soprocacam.com', subject, message: body });
+      const sendMail = () => fetch('https://codingmailer.onrender.com/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload
+      });
+
       try {
-        const response = await fetch('https://codingmailer.onrender.com/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ to: 'info@soprocacam.com', subject, message: body })
-        });
+        let response = await sendMail();
+
+        // Render.com free tier : réveil du serveur → réessai automatique après 6s
+        if (!response.ok) {
+          if (btn) btn.textContent = 'Connexion en cours…';
+          await new Promise(r => setTimeout(r, 6000));
+          response = await sendMail();
+        }
 
         if (response.ok) {
           if (success) success.style.display = 'block';
