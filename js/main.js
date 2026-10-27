@@ -272,15 +272,10 @@ function initFAQ() {
 }
 
 /* ==========================================================================
-   FORM HANDLING — EmailJS (client-side, no PHP required)
-   Credentials: js/emailjs-config.js
+   FORM HANDLING — CodingMailer (codingmailer.onrender.com)
+   Aucun compte requis. Envoie vers info@soprocacam.com.
    ========================================================================== */
 function initForms() {
-  // Initialiser EmailJS avec la clé publique
-  if (window.emailjs && window.SOPRO_EMAILJS) {
-    emailjs.init({ publicKey: window.SOPRO_EMAILJS.publicKey });
-  }
-
   document.querySelectorAll('form[data-sopro]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -307,20 +302,75 @@ function initForms() {
       if (success)  success.style.display  = 'none';
       if (errorDiv) errorDiv.style.display = 'none';
 
+      // Lecture des champs
+      const g = n => form.querySelector(`[name="${n}"]`)?.value?.trim() || '';
+      const formType = g('_form_type') || 'contact';
+
+      let subject, body;
+
+      if (formType === 'partenaire') {
+        subject = `Demande de partenariat — ${g('nom_complet')} | SOPROCACAM`;
+        body = [
+          '╔══════════════════════════════════════════╗',
+          '  SOPROCACAM COOP-CA — Demande de partenariat',
+          '  Trader & Exportateur agréé — Membre du GEX',
+          '╚══════════════════════════════════════════╝',
+          '',
+          `Nom et prénom   : ${g('nom_complet')}`,
+          `Téléphone       : ${g('telephone') || '—'}`,
+          `E-mail          : ${g('email')}`,
+          `Localité/Région : ${g('localite') || '—'}`,
+          `Profil          : ${g('vous_etes') || '—'}`,
+          '',
+          '─── Message ───────────────────────────────',
+          g('message') || '(aucun message)',
+          '────────────────────────────────────────────',
+          '',
+          `Reçu depuis : www.soprocacam.com`,
+          `Date        : ${new Date().toLocaleString('fr-FR')}`,
+        ].join('\n');
+      } else {
+        subject = `Demande de devis — ${g('prenom')} ${g('nom')} | SOPROCACAM`;
+        body = [
+          '╔══════════════════════════════════════════╗',
+          '  SOPROCACAM COOP-CA — Demande de devis / Contact',
+          '  Trader & Exportateur agréé — Membre du GEX',
+          '╚══════════════════════════════════════════╝',
+          '',
+          `Prénom          : ${g('prenom')}`,
+          `Nom             : ${g('nom')}`,
+          `Entreprise      : ${g('entreprise') || '—'}`,
+          `Pays            : ${g('pays') || '—'}`,
+          `E-mail          : ${g('email')}`,
+          `Téléphone       : ${g('telephone') || '—'}`,
+          `Produit souhaité: ${g('produit') || '—'}`,
+          `Quantité        : ${g('quantite') || '—'}`,
+          `Destination     : ${g('destination') || '—'}`,
+          '',
+          '─── Message ───────────────────────────────',
+          g('message') || '(aucun message)',
+          '────────────────────────────────────────────',
+          '',
+          `Reçu depuis : www.soprocacam.com`,
+          `Date        : ${new Date().toLocaleString('fr-FR')}`,
+        ].join('\n');
+      }
+
       try {
-        if (!window.emailjs || !window.SOPRO_EMAILJS) throw new Error('EmailJS non configuré');
-        const formType = form.querySelector('[name="_form_type"]')?.value || 'contact';
-        const templateId = formType === 'partenaire'
-          ? window.SOPRO_EMAILJS.templateIdPartenaire
-          : window.SOPRO_EMAILJS.templateIdContact;
+        const response = await fetch('https://codingmailer.onrender.com/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ to: 'info@soprocacam.com', subject, message: body })
+        });
 
-        await emailjs.sendForm(window.SOPRO_EMAILJS.serviceId, templateId, form);
-
-        if (success) success.style.display = 'block';
-        form.reset();
-        setTimeout(() => { if (success) success.style.display = 'none'; }, 7000);
-      } catch (err) {
-        console.error('EmailJS error:', err);
+        if (response.ok) {
+          if (success) success.style.display = 'block';
+          form.reset();
+          setTimeout(() => { if (success) success.style.display = 'none'; }, 7000);
+        } else {
+          if (errorDiv) errorDiv.style.display = 'block';
+        }
+      } catch (_err) {
         if (errorDiv) errorDiv.style.display = 'block';
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
