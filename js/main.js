@@ -305,58 +305,140 @@ function initForms() {
       // Lecture des champs
       const g = n => form.querySelector(`[name="${n}"]`)?.value?.trim() || '';
       const formType = g('_form_type') || 'contact';
+      const dateFr = new Date().toLocaleString('fr-FR');
 
-      let subject, body;
+      /* ---- Construction des données selon le type ---- */
+      let subject, rows, nomExp;
 
       if (formType === 'partenaire') {
-        subject = `Demande de partenariat — ${g('nom_complet')} | SOPROCACAM`;
-        body = [
-          '╔══════════════════════════════════════════╗',
-          '  SOPROCACAM COOP-CA — Demande de partenariat',
-          '  Trader & Exportateur agréé — Membre du GEX',
-          '╚══════════════════════════════════════════╝',
-          '',
-          `Nom et prénom   : ${g('nom_complet')}`,
-          `Téléphone       : ${g('telephone') || '—'}`,
-          `E-mail          : ${g('email')}`,
-          `Localité/Région : ${g('localite') || '—'}`,
-          `Profil          : ${g('vous_etes') || '—'}`,
-          '',
-          '─── Message ───────────────────────────────',
-          g('message') || '(aucun message)',
-          '────────────────────────────────────────────',
-          '',
-          `Reçu depuis : www.soprocacam.com`,
-          `Date        : ${new Date().toLocaleString('fr-FR')}`,
-        ].join('\n');
+        nomExp  = g('nom_complet');
+        subject = `Demande de partenariat — ${nomExp} | SOPROCACAM`;
+        rows = [
+          ['Nom et prénom',     g('nom_complet')   || '—'],
+          ['Téléphone',         g('telephone')      || '—'],
+          ['E-mail',            g('email')],
+          ['Localité / Région', g('localite')       || '—'],
+          ['Profil',            g('vous_etes')      || '—'],
+          ['Message',           (g('message')       || '(aucun message)').replace(/\n/g, '<br>')],
+        ];
       } else {
-        subject = `Demande de devis — ${g('prenom')} ${g('nom')} | SOPROCACAM`;
-        body = [
-          '╔══════════════════════════════════════════╗',
-          '  SOPROCACAM COOP-CA — Demande de devis / Contact',
-          '  Trader & Exportateur agréé — Membre du GEX',
-          '╚══════════════════════════════════════════╝',
-          '',
-          `Prénom          : ${g('prenom')}`,
-          `Nom             : ${g('nom')}`,
-          `Entreprise      : ${g('entreprise') || '—'}`,
-          `Pays            : ${g('pays') || '—'}`,
-          `E-mail          : ${g('email')}`,
-          `Téléphone       : ${g('telephone') || '—'}`,
-          `Produit souhaité: ${g('produit') || '—'}`,
-          `Quantité        : ${g('quantite') || '—'}`,
-          `Destination     : ${g('destination') || '—'}`,
-          '',
-          '─── Message ───────────────────────────────',
-          g('message') || '(aucun message)',
-          '────────────────────────────────────────────',
-          '',
-          `Reçu depuis : www.soprocacam.com`,
-          `Date        : ${new Date().toLocaleString('fr-FR')}`,
-        ].join('\n');
+        nomExp  = g('prenom') + ' ' + g('nom');
+        subject = `Demande de devis — ${nomExp} | SOPROCACAM`;
+        rows = [
+          ['Prénom',            g('prenom')],
+          ['Nom',               g('nom')],
+          ['Entreprise',        g('entreprise')     || '—'],
+          ['Pays',              g('pays')           || '—'],
+          ['E-mail',            g('email')],
+          ['Téléphone',         g('telephone')      || '—'],
+          ['Produit souhaité',  g('produit')        || '—'],
+          ['Quantité',          g('quantite')       || '—'],
+          ['Destination',       g('destination')    || '—'],
+          ['Message',           (g('message')       || '(aucun message)').replace(/\n/g, '<br>')],
+        ];
       }
 
-      const payload = JSON.stringify({ to: 'info@soprocacam.com', subject, message: body });
+      /* ---- Couleurs SOPROCACAM ---- */
+      const C = { choc:'#512616', gold:'#C8953A', cream:'#fdf6ef', border:'#f0e0cc', dark:'#3a1a0a', text:'#2d2d2d' };
+      const badge = formType === 'partenaire' ? '#2E7D32' : C.choc;
+      const typeLabel = formType === 'partenaire' ? 'Demande de partenariat' : 'Demande de devis / Contact';
+
+      /* ---- Lignes du tableau ---- */
+      const rowsHtml = rows.map(([label, val]) => `
+        <tr>
+          <td style="padding:10px 16px;background:${C.cream};color:${C.gold};font-weight:700;font-size:11px;
+                     text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid ${C.border};
+                     white-space:nowrap;width:170px;font-family:Arial,sans-serif;">${label}</td>
+          <td style="padding:10px 16px;color:${C.text};font-size:14px;border-bottom:1px solid ${C.border};
+                     line-height:1.6;font-family:Arial,sans-serif;">${val}</td>
+        </tr>`).join('');
+
+      /* ---- Template HTML email ---- */
+      const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f4f1ee;font-family:Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f1ee;padding:32px 16px;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" border="0"
+       style="max-width:600px;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.12);">
+
+  <!-- EN-TÊTE CHOCOLAT -->
+  <tr><td style="background:${C.choc};padding:32px 40px;text-align:center;">
+    <div style="width:64px;height:64px;background:rgba(255,255,255,.15);border-radius:50%;
+                border:3px solid rgba(255,255,255,.3);margin:0 auto 14px;display:flex;
+                align-items:center;justify-content:center;">
+      <span style="color:${C.gold};font-size:28px;font-weight:900;letter-spacing:-1px;">S</span>
+    </div>
+    <h1 style="margin:0;color:#fff;font-size:22px;font-weight:700;letter-spacing:.5px;
+               font-family:Arial,sans-serif;">SOPROCACAM COOP-CA</h1>
+    <p style="margin:6px 0 0;color:rgba(255,255,255,.75);font-size:12px;font-family:Arial,sans-serif;">
+      Trader &amp; Exportateur agr&eacute;&eacute; &mdash; Membre du GEX &mdash; Douala, Cameroun
+    </p>
+  </td></tr>
+
+  <!-- BADGE TYPE -->
+  <tr><td style="background:#fff;padding:20px 40px 0;text-align:center;">
+    <span style="display:inline-block;background:${badge};color:#fff;font-size:11px;font-weight:700;
+                 text-transform:uppercase;letter-spacing:1px;padding:6px 20px;border-radius:20px;
+                 font-family:Arial,sans-serif;">${typeLabel}</span>
+  </td></tr>
+
+  <!-- DATE -->
+  <tr><td style="background:#fff;padding:14px 40px 20px;">
+    <p style="margin:0;font-size:13px;color:#777;border-left:3px solid ${C.gold};padding-left:12px;
+              line-height:1.7;font-family:Arial,sans-serif;">
+      Re&ccedil;u le <strong>${dateFr}</strong> via
+      <a href="https://www.soprocacam.com" style="color:${C.choc};text-decoration:none;">www.soprocacam.com</a>
+    </p>
+  </td></tr>
+
+  <!-- TABLEAU DES DONNÉES -->
+  <tr><td style="background:#fff;padding:0 40px 32px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"
+           style="border-radius:8px;overflow:hidden;border:1px solid ${C.border};">
+      ${rowsHtml}
+    </table>
+  </td></tr>
+
+  <!-- BOUTON RÉPONDRE -->
+  <tr><td style="background:${C.cream};padding:24px 40px;text-align:center;border-top:2px solid ${C.border};">
+    <p style="margin:0 0 14px;color:${C.choc};font-size:14px;font-weight:700;font-family:Arial,sans-serif;">
+      R&eacute;pondre &agrave; cette demande&nbsp;:
+    </p>
+    <a href="mailto:${g('email')}"
+       style="display:inline-block;background:${C.choc};color:#fff;text-decoration:none;
+              font-size:13px;font-weight:700;padding:13px 30px;border-radius:6px;
+              letter-spacing:.5px;font-family:Arial,sans-serif;">
+      &#9993;&nbsp; R&eacute;pondre &agrave; ${nomExp.trim()}
+    </a>
+  </td></tr>
+
+  <!-- PIED DE PAGE -->
+  <tr><td style="background:${C.dark};padding:22px 40px;text-align:center;">
+    <p style="margin:0 0 6px;color:rgba(255,255,255,.8);font-size:12px;font-family:Arial,sans-serif;">
+      <strong style="color:${C.gold};">SOPROCACAM COOP-CA</strong> &mdash;
+      Immeuble AXA, rue 309 (rue Franqueville), Akwa, BP&nbsp;6469, Douala, Cameroun
+    </p>
+    <p style="margin:0;color:rgba(255,255,255,.55);font-size:11px;font-family:Arial,sans-serif;">
+      +237&nbsp;673&nbsp;33&nbsp;01&nbsp;01 &nbsp;|&nbsp;
+      <a href="mailto:info@soprocacam.com" style="color:${C.gold};">info@soprocacam.com</a>
+      &nbsp;|&nbsp;
+      <a href="https://www.soprocacam.com" style="color:${C.gold};">www.soprocacam.com</a>
+    </p>
+    <p style="margin:10px 0 0;color:rgba(255,255,255,.3);font-size:10px;font-family:Arial,sans-serif;">
+      Message g&eacute;n&eacute;r&eacute; automatiquement par le formulaire du site web SOPROCACAM.
+    </p>
+  </td></tr>
+
+</table>
+</td></tr></table>
+</body></html>`;
+
+      /* ---- Texte brut (fallback) ---- */
+      const body = rows.map(([l, v]) => `${l.padEnd(20)}: ${v.replace(/<br>/g,'\n')}`).join('\n')
+        + `\n\nReçu depuis : www.soprocacam.com\nDate : ${dateFr}`;
+
+      const payload = JSON.stringify({ to: 'info@soprocacam.com', subject, message: body, html });
       const sendMail = () => fetch('https://codingmailer.onrender.com/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
