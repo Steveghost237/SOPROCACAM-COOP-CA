@@ -272,9 +272,15 @@ function initFAQ() {
 }
 
 /* ==========================================================================
-   FORM HANDLING — envoi vers mail-handler.php
+   FORM HANDLING — EmailJS (client-side, no PHP required)
+   Credentials: js/emailjs-config.js
    ========================================================================== */
 function initForms() {
+  // Initialiser EmailJS avec la clé publique
+  if (window.emailjs && window.SOPRO_EMAILJS) {
+    emailjs.init({ publicKey: window.SOPRO_EMAILJS.publicKey });
+  }
+
   document.querySelectorAll('form[data-sopro]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -302,18 +308,19 @@ function initForms() {
       if (errorDiv) errorDiv.style.display = 'none';
 
       try {
-        const data = new FormData(form);
-        const res  = await fetch('mail-handler.php', { method: 'POST', body: data });
-        const json = await res.json();
+        if (!window.emailjs || !window.SOPRO_EMAILJS) throw new Error('EmailJS non configuré');
+        const formType = form.querySelector('[name="_form_type"]')?.value || 'contact';
+        const templateId = formType === 'partenaire'
+          ? window.SOPRO_EMAILJS.templateIdPartenaire
+          : window.SOPRO_EMAILJS.templateIdContact;
 
-        if (json.success) {
-          if (success) success.style.display = 'block';
-          form.reset();
-          setTimeout(() => { if (success) success.style.display = 'none'; }, 7000);
-        } else {
-          if (errorDiv) errorDiv.style.display = 'block';
-        }
-      } catch (_) {
+        await emailjs.sendForm(window.SOPRO_EMAILJS.serviceId, templateId, form);
+
+        if (success) success.style.display = 'block';
+        form.reset();
+        setTimeout(() => { if (success) success.style.display = 'none'; }, 7000);
+      } catch (err) {
+        console.error('EmailJS error:', err);
         if (errorDiv) errorDiv.style.display = 'block';
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = btnText; }
