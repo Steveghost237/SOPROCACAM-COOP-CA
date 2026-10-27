@@ -272,8 +272,8 @@ function initFAQ() {
 }
 
 /* ==========================================================================
-   FORM HANDLING — CodingMailer (codingmailer.onrender.com)
-   Aucun compte requis. Envoie vers info@soprocacam.com.
+   FORM HANDLING — Web3Forms (api.web3forms.com)
+   Envoie vers info@soprocacam.com avec email HTML stylé SOPROCACAM.
    ========================================================================== */
 function initForms() {
   document.querySelectorAll('form[data-sopro]').forEach(form => {
@@ -438,22 +438,20 @@ function initForms() {
       const body = rows.map(([l, v]) => `${l.padEnd(20)}: ${v.replace(/<br>/g,'\n')}`).join('\n')
         + `\n\nReçu depuis : www.soprocacam.com\nDate : ${dateFr}`;
 
-      const payload = JSON.stringify({ to: 'info@soprocacam.com', subject, message: body });
-      const sendMail = () => fetch('https://codingmailer.onrender.com/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: payload
+      const payload = JSON.stringify({
+        access_key: 'e8fdb914-61b5-4f54-b069-4c3fdd10150b',
+        subject,
+        from_name: 'SOPROCACAM Website',
+        html,
+        message: body
       });
 
       try {
-        let response = await sendMail();
-
-        // Render.com free tier : réveil du serveur → réessai automatique après 6s
-        if (!response.ok) {
-          if (btn) btn.textContent = 'Connexion en cours…';
-          await new Promise(r => setTimeout(r, 6000));
-          response = await sendMail();
-        }
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: payload
+        });
 
         if (response.ok) {
           if (success) success.style.display = 'block';
