@@ -1,0 +1,36 @@
+name: Déploiement automatique → IONOS (www.soprocacam.com)
+
+# Déclenché à chaque push sur la branche main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Déploiement FTP vers IONOS
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupérer le code du dépôt
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      # 2. Déployer via FTP sur l'hébergement IONOS
+      - name: Déploiement FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server:     ${{ secrets.FTP_SERVER }}
+          username:   ${{ secrets.FTP_USERNAME }}
+          password:   ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          # Exclure les fichiers qui ne doivent pas être en ligne
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            build_pages.py
+            extract_strings.py
+            generate_pages.py
+            update_i18n.py
+            credits.txt
