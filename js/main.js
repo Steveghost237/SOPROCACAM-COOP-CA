@@ -272,9 +272,8 @@ function initFAQ() {
 }
 
 /* ==========================================================================
-   FORM HANDLING — mail-handler.php (IONOS)
-   Envoie vers info@soprocacam.com avec email HTML stylé SOPROCACAM.
-   URL absolue HTTPS pour éviter les redirections qui changent POST→GET.
+   FORM HANDLING — Web3Forms (api.web3forms.com)
+   Envoie vers info@soprocacam.com — champs individuels (pas de HTML brut).
    ========================================================================== */
 function initForms() {
   document.querySelectorAll('form[data-sopro]').forEach(form => {
@@ -439,12 +438,17 @@ function initForms() {
       const body = rows.map(([l, v]) => `${l.padEnd(20)}: ${v.replace(/<br>/g,'\n')}`).join('\n')
         + `\n\nReçu depuis : www.soprocacam.com\nDate : ${dateFr}`;
 
-      const formData = new FormData(form);
+      /* ---- Payload Web3Forms : champs individuels propres ---- */
+      const fields = { access_key: 'e8fdb914-61b5-4f54-b069-4c3fdd10150b', subject, from_name: 'SOPROCACAM Website' };
+      rows.forEach(([l, v]) => { fields[l] = v.replace(/<br>/g, '\n'); });
+      fields['Reçu depuis'] = 'www.soprocacam.com';
+      fields['Date'] = dateFr;
 
       try {
-        const response = await fetch('https://www.soprocacam.com/mail-handler.php', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          body: formData
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(fields)
         });
 
         if (response.ok) {
