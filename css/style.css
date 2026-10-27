@@ -1476,7 +1476,7 @@ textarea { resize: vertical; min-height: 100px; }
   text-transform: uppercase;
   letter-spacing: 1px;
   flex-shrink: 0;
-  width: 40px;
+  min-width: 60px;
   padding-top: 2px;
 }
 .footer-contact-value {
